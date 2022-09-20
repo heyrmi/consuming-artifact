@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+env:
+  GITHUB_USERNAME: heyrmi
+  GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Java 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: "11"
+          cache: "maven"
+
+      - name: Maven Settings
+        uses: s4u/maven-settings-action@v2
+        with:
+          servers: |
+            [{
+                "id": "github",
+                "username": "heyrmi",
+                "password": "${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}"
+            }]
+          githubServer: false
+
+      - name: Run Test
+        run: mvn test
