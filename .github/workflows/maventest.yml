@@ -7,7 +7,6 @@ on:
 
 env:
   GITHUB_USERNAME: heyrmi
-  GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
 
 jobs:
   build:
