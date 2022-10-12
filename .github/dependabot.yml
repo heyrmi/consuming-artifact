@@ -5,7 +5,7 @@ registries:
     type: maven-repository
     url: https://maven.pkg.github.com/heyrmi
     username: heyrmi
-    password: ${{secrets.MY_ARTIFACTORY_PASSWORD}}
+    password: ${{secrets.ARTIFACTORY_PASSWORD}}
 
 updates:
   - package-ecosystem: github-actions
@@ -36,3 +36,5 @@ updates:
       - maven-github
     schedule:
       interval: weekly
+      day: sunday
+      time: "05:00"
