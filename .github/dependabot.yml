@@ -1,4 +1,12 @@
 version: 2
+
+registries:
+  maven-artifactory:
+    type: maven-repository
+    url: https://maven.pkg.github.com/heyrmi/artifact-consumption
+    username: heyrmi
+    password: ${{secrets.ARTIFACTORY_PASSWORD}}
+
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -12,6 +20,8 @@ updates:
 
   - package-ecosystem: maven
     directory: /
+    registries:
+      - maven-github
     open-pull-requests-limit: 2
     rebase-strategy: auto
     schedule:
