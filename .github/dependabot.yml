@@ -1,11 +1,11 @@
 version: 2
 
 registries:
-  maven-artifactory:
+  maven-github:
     type: maven-repository
-    url: https://maven.pkg.github.com/heyrmi/artifact-consumption
+    url: https://maven.pkg.github.com/heyrmi
     username: heyrmi
-    password: ${{secrets.ARTIFACTORY_PASSWORD}}
+    password: ${{secrets.MY_ARTIFACTORY_PASSWORD}}
 
 updates:
   - package-ecosystem: github-actions
@@ -29,3 +29,10 @@ updates:
       day: sunday
       time: "05:00"
       timezone: "Asia/Calcutta"
+
+  - package-ecosystem: gitsubmodule
+    directory: /
+    registries:
+      - maven-github
+    schedule:
+      interval: weekly
